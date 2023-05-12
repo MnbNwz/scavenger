@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "react-native run-ios --simulator=\"iPhone 14 Pro Max\"",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
@@ -21,8 +21,7 @@
     "react-native-safe-area-context": "^3.3.2",
     "react-native-safe-area-view": "^1.1.1",
     "react-native-screens": "^2.17.1",
-    "react-native-uuid": "^2.0.1",
-    "react-native-vector-icons": "^9.2.0"
+    "react-native-uuid": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

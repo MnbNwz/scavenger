@@ -13,7 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
 import {showMessage} from 'react-native-flash-message';
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = props => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [uniqueID] = useState(uuid.v4());
@@ -22,6 +22,9 @@ const LoginScreen = ({navigation}) => {
     removeAllItems();
   }, []);
 
+  LoginScreen.navigationOptions = {
+    header: props => <View title="My Screen Title" {...props} />,
+  };
   const removeAllItems = async () => {
     try {
       // nameee = await AsyncStorage.getItem('name');
@@ -44,11 +47,12 @@ const LoginScreen = ({navigation}) => {
       try {
         await AsyncStorage.setItem('name', name);
         await AsyncStorage.setItem('email', email);
+        await AsyncStorage.setItem('UniqueId', uniqueID);
         console.log('Values stored successfully!');
       } catch (error) {
         console.log('Error storing values:', error);
       }
-      navigation.navigate('Items', {
+      props?.navigation.navigate('Items', {
         uniqueID,
         name,
         email,
@@ -59,7 +63,7 @@ const LoginScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.contentContainer}>
-        <Text style={styles.title}>E-commerce Game Login</Text>
+        <Text style={styles.title}>scavenger_Hunt Login</Text>
         <TextInput
           style={styles.input}
           placeholder="Name"

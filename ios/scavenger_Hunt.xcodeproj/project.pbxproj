@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* scavenger_HuntTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* scavenger_HuntTests.m */; };
-		0DEC970ED52D44AA6D3C448A /* libPods-scavenger_Hunt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B195D005809DAB13F1F93E8 /* libPods-scavenger_Hunt.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		411D43A75C7E40FC9D96BA58 /* libPods-scavenger_Hunt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FBDEBE0CC1478317EED2EA1 /* libPods-scavenger_Hunt.a */; };
+		7F378994177E1C1F7558DFEA /* libPods-scavenger_Hunt-scavenger_HuntTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F911CEAC7EBE4DB7147FC52 /* libPods-scavenger_Hunt-scavenger_HuntTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		E2CE3A46C0E0298303F76C79 /* libPods-scavenger_Hunt-scavenger_HuntTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FA483464352D59FFB239C3A /* libPods-scavenger_Hunt-scavenger_HuntTests.a */; };
 		FA8C057D2A0D562000203D43 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8C057C2A0D562000203D43 /* File.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,22 +31,22 @@
 		00E356EE1AD99517003FC87E /* scavenger_HuntTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = scavenger_HuntTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* scavenger_HuntTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = scavenger_HuntTests.m; sourceTree = "<group>"; };
-		0B3EF378087BCFDFAE013925 /* Pods-scavenger_Hunt-scavenger_HuntTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scavenger_Hunt-scavenger_HuntTests.debug.xcconfig"; path = "Target Support Files/Pods-scavenger_Hunt-scavenger_HuntTests/Pods-scavenger_Hunt-scavenger_HuntTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0FBDEBE0CC1478317EED2EA1 /* libPods-scavenger_Hunt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-scavenger_Hunt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* scavenger_Hunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scavenger_Hunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = scavenger_Hunt/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = scavenger_Hunt/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = scavenger_Hunt/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = scavenger_Hunt/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = scavenger_Hunt/main.m; sourceTree = "<group>"; };
-		2B195D005809DAB13F1F93E8 /* libPods-scavenger_Hunt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-scavenger_Hunt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2FA483464352D59FFB239C3A /* libPods-scavenger_Hunt-scavenger_HuntTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-scavenger_Hunt-scavenger_HuntTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D956B73A774525229EFAF24 /* Pods-scavenger_Hunt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scavenger_Hunt.release.xcconfig"; path = "Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt.release.xcconfig"; sourceTree = "<group>"; };
-		6A2B921750CA26133627A95E /* Pods-scavenger_Hunt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scavenger_Hunt.debug.xcconfig"; path = "Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt.debug.xcconfig"; sourceTree = "<group>"; };
-		6F8D70C6861DB47635A72A2B /* Pods-scavenger_Hunt-scavenger_HuntTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scavenger_Hunt-scavenger_HuntTests.release.xcconfig"; path = "Target Support Files/Pods-scavenger_Hunt-scavenger_HuntTests/Pods-scavenger_Hunt-scavenger_HuntTests.release.xcconfig"; sourceTree = "<group>"; };
+		3014DAB7BBE4B6C445D85B0E /* Pods-scavenger_Hunt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scavenger_Hunt.release.xcconfig"; path = "Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt.release.xcconfig"; sourceTree = "<group>"; };
+		32674F0467FDE0E9B5B2CC44 /* Pods-scavenger_Hunt-scavenger_HuntTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scavenger_Hunt-scavenger_HuntTests.debug.xcconfig"; path = "Target Support Files/Pods-scavenger_Hunt-scavenger_HuntTests/Pods-scavenger_Hunt-scavenger_HuntTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4F911CEAC7EBE4DB7147FC52 /* libPods-scavenger_Hunt-scavenger_HuntTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-scavenger_Hunt-scavenger_HuntTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = scavenger_Hunt/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F9502842D5017327B4117C32 /* Pods-scavenger_Hunt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scavenger_Hunt.debug.xcconfig"; path = "Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt.debug.xcconfig"; sourceTree = "<group>"; };
 		FA8C057B2A0D561F00203D43 /* scavenger_Hunt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "scavenger_Hunt-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA8C057C2A0D562000203D43 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		FFE47B727908EDDAB084060D /* Pods-scavenger_Hunt-scavenger_HuntTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scavenger_Hunt-scavenger_HuntTests.release.xcconfig"; path = "Target Support Files/Pods-scavenger_Hunt-scavenger_HuntTests/Pods-scavenger_Hunt-scavenger_HuntTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2CE3A46C0E0298303F76C79 /* libPods-scavenger_Hunt-scavenger_HuntTests.a in Frameworks */,
+				7F378994177E1C1F7558DFEA /* libPods-scavenger_Hunt-scavenger_HuntTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DEC970ED52D44AA6D3C448A /* libPods-scavenger_Hunt.a in Frameworks */,
+				411D43A75C7E40FC9D96BA58 /* libPods-scavenger_Hunt.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,8 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				2B195D005809DAB13F1F93E8 /* libPods-scavenger_Hunt.a */,
-				2FA483464352D59FFB239C3A /* libPods-scavenger_Hunt-scavenger_HuntTests.a */,
+				0FBDEBE0CC1478317EED2EA1 /* libPods-scavenger_Hunt.a */,
+				4F911CEAC7EBE4DB7147FC52 /* libPods-scavenger_Hunt-scavenger_HuntTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,10 +112,10 @@
 		6C55E45C68223A7344EBC6BD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6A2B921750CA26133627A95E /* Pods-scavenger_Hunt.debug.xcconfig */,
-				4D956B73A774525229EFAF24 /* Pods-scavenger_Hunt.release.xcconfig */,
-				0B3EF378087BCFDFAE013925 /* Pods-scavenger_Hunt-scavenger_HuntTests.debug.xcconfig */,
-				6F8D70C6861DB47635A72A2B /* Pods-scavenger_Hunt-scavenger_HuntTests.release.xcconfig */,
+				F9502842D5017327B4117C32 /* Pods-scavenger_Hunt.debug.xcconfig */,
+				3014DAB7BBE4B6C445D85B0E /* Pods-scavenger_Hunt.release.xcconfig */,
+				32674F0467FDE0E9B5B2CC44 /* Pods-scavenger_Hunt-scavenger_HuntTests.debug.xcconfig */,
+				FFE47B727908EDDAB084060D /* Pods-scavenger_Hunt-scavenger_HuntTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -160,12 +160,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "scavenger_HuntTests" */;
 			buildPhases = (
-				2FFD30B54B3AFD0F61D045D9 /* [CP] Check Pods Manifest.lock */,
+				3323BF93DE3CC82E234C4C0B /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				B08DC376E1D3FC5F99BE5611 /* [CP] Embed Pods Frameworks */,
-				71DB785F989317E8582BF961 /* [CP] Copy Pods Resources */,
+				2D4F5CCCDAF3429E6659B80A /* [CP] Embed Pods Frameworks */,
+				66998645030689F8D71639B4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -181,14 +181,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "scavenger_Hunt" */;
 			buildPhases = (
-				101347F2A21188D422183D2A /* [CP] Check Pods Manifest.lock */,
+				6D8251F3408D096DE563C574 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				416E2E444849A73C3F7A8B8A /* [CP] Embed Pods Frameworks */,
-				C6A53514FCC72D69D1FF8534 /* [CP] Copy Pods Resources */,
+				DFF994FCE78721651BD77A96 /* [CP] Embed Pods Frameworks */,
+				38F5861843D67B07F936EF51 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -269,29 +269,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		101347F2A21188D422183D2A /* [CP] Check Pods Manifest.lock */ = {
+		2D4F5CCCDAF3429E6659B80A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt-scavenger_HuntTests/Pods-scavenger_Hunt-scavenger_HuntTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-scavenger_Hunt-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt-scavenger_HuntTests/Pods-scavenger_Hunt-scavenger_HuntTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt-scavenger_HuntTests/Pods-scavenger_Hunt-scavenger_HuntTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2FFD30B54B3AFD0F61D045D9 /* [CP] Check Pods Manifest.lock */ = {
+		3323BF93DE3CC82E234C4C0B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -313,24 +308,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		416E2E444849A73C3F7A8B8A /* [CP] Embed Pods Frameworks */ = {
+		38F5861843D67B07F936EF51 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		71DB785F989317E8582BF961 /* [CP] Copy Pods Resources */ = {
+		66998645030689F8D71639B4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -347,38 +342,43 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt-scavenger_HuntTests/Pods-scavenger_Hunt-scavenger_HuntTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B08DC376E1D3FC5F99BE5611 /* [CP] Embed Pods Frameworks */ = {
+		6D8251F3408D096DE563C574 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt-scavenger_HuntTests/Pods-scavenger_Hunt-scavenger_HuntTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-scavenger_Hunt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFF994FCE78721651BD77A96 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt-scavenger_HuntTests/Pods-scavenger_Hunt-scavenger_HuntTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt-scavenger_HuntTests/Pods-scavenger_Hunt-scavenger_HuntTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C6A53514FCC72D69D1FF8534 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-scavenger_Hunt/Pods-scavenger_Hunt-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -434,7 +434,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B3EF378087BCFDFAE013925 /* Pods-scavenger_Hunt-scavenger_HuntTests.debug.xcconfig */;
+			baseConfigurationReference = 32674F0467FDE0E9B5B2CC44 /* Pods-scavenger_Hunt-scavenger_HuntTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -462,7 +462,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F8D70C6861DB47635A72A2B /* Pods-scavenger_Hunt-scavenger_HuntTests.release.xcconfig */;
+			baseConfigurationReference = FFE47B727908EDDAB084060D /* Pods-scavenger_Hunt-scavenger_HuntTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -487,7 +487,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A2B921750CA26133627A95E /* Pods-scavenger_Hunt.debug.xcconfig */;
+			baseConfigurationReference = F9502842D5017327B4117C32 /* Pods-scavenger_Hunt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -514,7 +514,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D956B73A774525229EFAF24 /* Pods-scavenger_Hunt.release.xcconfig */;
+			baseConfigurationReference = 3014DAB7BBE4B6C445D85B0E /* Pods-scavenger_Hunt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
