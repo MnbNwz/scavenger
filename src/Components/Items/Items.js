@@ -9,6 +9,7 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
+import axios from 'axios';
 
 const styles = StyleSheet.create({
   container: {
@@ -61,8 +62,10 @@ const Items = ({navigation}) => {
 
       <View style={[styles.cameraContainer, {}]}>
         <TouchableOpacity
-          onPress={() => {
+          onPress={async () => {
             navigation.navigate('PDF Data');
+
+            debugger;
           }}
           style={{
             marginTop: -2.5 * StatusBar.currentHeight,

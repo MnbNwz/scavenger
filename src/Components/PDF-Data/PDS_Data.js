@@ -1,14 +1,37 @@
 import React, {useState} from 'react';
 import {View, TouchableOpacity, Text} from 'react-native';
 import {RNCamera} from 'react-native-camera';
+import axios from 'axios';
 
 const PDF_Data = ({navigation}) => {
   const [scannedData, setScannedData] = useState('');
   const [showCam, setShowCam] = useState(true);
 
-  const handleBarcodeScan = ({data}) => {
+  const handleBarcodeScan = async ({data}) => {
+    const url =
+      'https://nonchalant-foregoing-guarantee.glitch.me/add-player-card';
     setScannedData(data);
     setShowCam(false);
+    const scannedId = '12,d0ae5b2d-fafc-446f-a0cb-b3f9b094c94d';
+    var newID = scannedId.split(',');
+    var scavenger_id =
+      // newID[0]
+      12;
+    let id =
+      // props?.params?id
+      12;
+    var card_id = newID[1];
+
+    let payload = {id, scavenger_id, card_id};
+
+    try {
+      debugger;
+      const response = await axios.post(url, payload);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+      debugger;
+    }
   };
   console.log(scannedData);
   return (

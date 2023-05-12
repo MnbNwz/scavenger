@@ -8,62 +8,68 @@ import {
   SafeAreaView,
   StatusBar,
   Dimensions,
+  ActivityIndicator,
 } from 'react-native';
+// import AnimatedLoader from 'react-native-animated-loader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
 import {showMessage} from 'react-native-flash-message';
+import axios from 'axios';
 
 const LoginScreen = props => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [uniqueID] = useState(uuid.v4());
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     removeAllItems();
+    setName('');
+    setEmail('');
   }, []);
 
-  LoginScreen.navigationOptions = {
-    header: props => <View title="My Screen Title" {...props} />,
-  };
   const removeAllItems = async () => {
     try {
-      // nameee = await AsyncStorage.getItem('name');
-      // emailll = await AsyncStorage.getItem('email');
-
       await AsyncStorage.clear();
     } catch (error) {
       return null;
     }
   };
+  const url = 'https://nonchalant-foregoing-guarantee.glitch.me/create-player';
+
   const handleLogin = async () => {
-    // showMessage({
-    //   message: 'Hello World',
-    //   description: 'This is our second message',
-    //   type: 'success',
-    //   position: 'top',
-    // });
     if (name === '' || email === '') {
     } else {
-      try {
-        await AsyncStorage.setItem('name', name);
-        await AsyncStorage.setItem('email', email);
-        await AsyncStorage.setItem('UniqueId', uniqueID);
-        console.log('Values stored successfully!');
-      } catch (error) {
-        console.log('Error storing values:', error);
-      }
-      props?.navigation.navigate('Items', {
-        uniqueID,
+      const payload = {
         name,
         email,
-      });
+      };
+
+      try {
+        const response = await axios.post(url, payload);
+        console.log('Response:', response);
+        debugger;
+        if (response?.data?.success === true) {
+          debugger;
+          await AsyncStorage.setItem('name', name);
+          await AsyncStorage.setItem('email', email);
+          // props?.navigation?.navigate('Items', {
+          //   name,
+          //   email,
+          //   id: response?.data?.data?.id,
+          // });
+        }
+        setLoader(false);
+      } catch (error) {
+        console.error('Error:', error);
+        setLoader(false);
+      }
     }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.contentContainer}>
-        <Text style={styles.title}>scavenger_Hunt Login</Text>
+        <Text style={styles.title}>scavenger_Hunt</Text>
         <TextInput
           style={styles.input}
           placeholder="Name"
@@ -79,7 +85,20 @@ const LoginScreen = props => {
           onChangeText={text => setEmail(text)}
           keyboardType="email-address"
         />
-        <Button title="Login" onPress={handleLogin} />
+        <Button
+          title="Enter Details"
+          onPress={() => {
+            setLoader(true);
+            handleLogin();
+          }}
+        />
+        {/* <AnimatedLoader
+          visible={loader}
+          overlayColor="rgba(255,255,255,0.75)"
+          animationStyle={{width: 100, height: 100}}
+          speed={1}>
+          <Text>Doing something...</Text>
+        </AnimatedLoader> */}
       </View>
     </SafeAreaView>
   );
