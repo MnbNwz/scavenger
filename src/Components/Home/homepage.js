@@ -13,9 +13,7 @@ import {
   Keyboard,
 } from 'react-native';
 import ProgressLoader from 'rn-progress-loader';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import {showMessage} from 'react-native-flash-message';
 import axios from 'axios';
 import {useFocusEffect} from '@react-navigation/native';
