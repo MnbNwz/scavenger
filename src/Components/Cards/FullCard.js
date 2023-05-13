@@ -1,28 +1,74 @@
 import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import axios from 'axios';
+import ProgressLoader from 'rn-progress-loader';
 
-const CardComponent = props => {
+const SingleCardComponent = props => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [loader, setLoader] = useState(false);
 
   const handleOptionSelect = option => {
     setSelectedOption(prevOption => (prevOption === option ? null : option));
   };
+  const url =
+    'https://nonchalant-foregoing-guarantee.glitch.me/submit-card-option';
+  const handleSubmit = async () => {
+    setLoader(true);
+    const payload = {
+      id: props?.userID,
+      card_id: props?.id,
+      selected: selectedOption,
+    };
+    debugger;
+    if (selectedOption) {
+      try {
+        const response = await axios.post(url, payload);
+        // console.log(response);
+
+        if (response?.data.success === true) {
+          props?.back();
+        }
+        debugger;
+      } catch (err) {
+        console.log(err);
+        debugger;
+      }
+    }
+    setLoader(false);
+  };
+
+  const {id, image, points, correct, options, card_title} = props;
+  console.log(selectedOption);
 
   return (
-    <View style={styles.card}>
+    <View key={id} style={styles.card}>
+      <ProgressLoader
+        visible={loader}
+        isModal={true}
+        isHUD={true}
+        hudColor={'#000000'}
+        color={'#FFFFFF'}
+      />
       <View style={styles.header}>
-        <Text style={styles.title}>{props?.title}</Text>
-        <Text style={styles.points}>{props?.points}</Text>
+        <Text style={styles.title}>Question: </Text>
+        <Text style={styles.points}>
+          <Text style={{fontWeight: 'bold'}}>Points:</Text>{' '}
+          <Text style={{fontWeight: points === 0 ? 'normal' : 'bold'}}>
+            {points}
+          </Text>
+        </Text>
       </View>
+      <Text style={[styles.title, {marginTop: '-2%'}]}>{card_title}</Text>
+
       <View style={styles.imageContainer}>
         <Image
-          source={{uri: props?.imageSource}}
+          source={{uri: image}}
           style={styles.image}
           resizeMode="contain"
         />
       </View>
       <View style={styles.optionsContainer}>
-        {props?.options?.map((option, index) => (
+        {options?.map((option, index) => (
           <TouchableOpacity
             key={index}
             style={[
@@ -35,18 +81,20 @@ const CardComponent = props => {
           </TouchableOpacity>
         ))}
       </View>
-      {console.log(props?.correct, props?.selected_option)}
       <Text style={styles.selectedOptionText}>
-        Status:
-        <Text style={styles.selectedOptionText}>
-          Status:{' '}
-          {props?.selected_option === undefined
-            ? 'Pending'
-            : props?.correct === props?.selected_option
-            ? 'Correct'
-            : 'Wrong'}
-        </Text>
+        {selectedOption
+          ? `Selected Option: ${selectedOption}`
+          : 'No option selected'}
       </Text>
+      <TouchableOpacity
+        style={[
+          styles.submitButton,
+          selectedOption ? null : styles.disabledSubmitButton,
+        ]}
+        onPress={handleSubmit}
+        disabled={!selectedOption}>
+        <Text style={styles.submitText}>Submit</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -115,17 +163,17 @@ const styles = StyleSheet.create({
   submitButton: {
     backgroundColor: '#007AFF',
     borderRadius: 10,
-    paddingVertical: 16,
+    paddingVertical: 12,
     alignItems: 'center',
   },
   disabledSubmitButton: {
-    opacity: 0.6,
+    backgroundColor: '#CCCCCC',
   },
   submitText: {
+    fontSize: 16,
     color: '#FFFFFF',
-    fontSize: 18,
     fontWeight: 'bold',
   },
 });
 
-export default CardComponent;
+export default SingleCardComponent;

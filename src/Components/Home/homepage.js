@@ -8,7 +8,9 @@ import {
   SafeAreaView,
   StatusBar,
   Dimensions,
-  ActivityIndicator,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import ProgressLoader from 'rn-progress-loader';
 
@@ -24,7 +26,7 @@ const LoginScreen = props => {
   const [loader, setLoader] = useState(false);
 
   useFocusEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       removeAllItems();
       setName('');
       setEmail('');
@@ -53,10 +55,7 @@ const LoginScreen = props => {
 
       try {
         const response = await axios.post(url, payload);
-        console.log('Response:', response);
-        debugger;
         if (response?.data?.success === true) {
-          debugger;
           await AsyncStorage.setItem('name', name);
           await AsyncStorage.setItem('email', email);
           props?.navigation?.navigate('Items', {
@@ -73,47 +72,54 @@ const LoginScreen = props => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ProgressLoader
-        visible={loader}
-        isModal={true}
-        isHUD={true}
-        hudColor={'#000000'}
-        color={'#FFFFFF'}
-      />
-      <View style={styles.contentContainer}>
-        <Text style={styles.title}>scavenger_Hunt</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Name"
-          value={name}
-          onChangeText={text => {
-            setName(text);
-          }}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={text => setEmail(text)}
-          keyboardType="email-address"
-        />
-        <Button
-          title="Enter Details"
-          onPress={() => {
-            handleLogin();
-          }}
-        />
-      </View>
-    </SafeAreaView>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAvoidingView style={{height: Dimensions.get('window').height}}>
+        <SafeAreaView style={styles.container}>
+          <ProgressLoader
+            visible={loader}
+            isModal={true}
+            isHUD={true}
+            hudColor={'#000000'}
+            color={'#FFFFFF'}
+          />
+          <View style={styles.contentContainer}>
+            <Text style={styles.title}>scavenger_Hunt</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Name"
+              value={name}
+              onChangeText={text => {
+                setName(text);
+              }}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              value={email}
+              onChangeText={text => setEmail(text)}
+              keyboardType="email-address"
+            />
+            <Button
+              title="Enter Details"
+              onPress={() => {
+                handleLogin();
+              }}
+            />
+          </View>
+        </SafeAreaView>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
+  button: {
+    borderRadius: 8,
+  },
   container: {
     flex: 1,
     backgroundColor: '#ECECEC',
-    marginTop: -2.5 * StatusBar.currentHeight,
+    marginTop: -5 * StatusBar.currentHeight,
   },
   contentContainer: {
     flex: 1,

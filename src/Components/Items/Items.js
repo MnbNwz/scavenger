@@ -12,6 +12,8 @@ import {
 
 import axios from 'axios';
 import CardComponent from '../Cards/Card';
+import {useFocusEffect} from '@react-navigation/native';
+import ProgressLoader from 'rn-progress-loader';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,100 +43,108 @@ const styles = StyleSheet.create({
     height: '20%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottomWidth: 1,
     borderBottomColor: '#000',
   },
 });
 
-const Items = ({navigation}) => {
+const Items = props => {
   const [cardData, setCardData] = useState([]);
+  const [loader, setLoader] = useState(false);
+  const [cardsFullData, setCardsFullData] = useState([]);
+  const [showItems, setShowItems] = useState(true);
 
-  useEffect(() => {
-    gettingData();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      setLoader(true);
+      gettingData();
+    }, []),
+  );
 
   const url = 'https://nonchalant-foregoing-guarantee.glitch.me/get-player';
 
   const gettingData = async () => {
     try {
-      const response = await axios.post(url, {id: 1});
+      const response = await axios.post(url, {id: props?.route?.params?.id});
       console.log(response);
-      response?.data?.success === true &&
+      if (response?.data?.success === true) {
+        console.log(response);
         setCardData(response?.data?.data?.cards);
+        setCardsFullData(response?.data?.data);
+      }
     } catch (err) {
       console.log(err);
       debugger;
     }
+    setLoader(false);
   };
-  console.log(cardData);
-  const B = props => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>;
 
-  const data = [
-    {
-      id: '1',
-      title: 'Card 1',
-      points: '10',
-      imageSource:
-        'http://res.cloudinary.com/dfz28acim/image/upload/v1683547307/recipe_image_1_kspw8z.jpg',
-      options: ['Option 1', 'Option 2', 'Option 3'],
-    },
-    {
-      id: '2',
-      title: 'Card 2',
-      points: '5',
-      imageSource:
-        'http://res.cloudinary.com/dfz28acim/image/upload/v1683547307/recipe_image_1_kspw8z.jpg',
-      options: ['Option A', 'Option B', 'Option C'],
-    },
-    // Add more data as needed
-  ];
+  // console.log(cardsFullData);
 
-  return (
-    <View style={styles.container}>
-      <View style={[styles.cameraContainer]}>
+  return showItems ? (
+    <View
+      style={[
+        styles.container,
+        {paddingTop: cardData.length === 0 ? '40%' : 0},
+      ]}>
+      <ProgressLoader
+        visible={loader}
+        isModal={true}
+        isHUD={true}
+        hudColor={'#000000'}
+        color={'#FFFFFF'}
+      />
+      <View
+        style={[
+          styles.cameraContainer,
+          {borderBottomWidth: cardData.length === 0 ? 0 : 1},
+        ]}>
         <TouchableOpacity
           onPress={async () => {
-            navigation.navigate('PDF Data');
+            props?.navigation?.navigate('PDF Data', {
+              id: props?.route?.params?.id,
+              cardData,
+            });
           }}
           style={{}}>
           <Image
             style={{
-              height: 120,
-              width: 120,
+              height: cardData.length === 0 ? 150 : 120,
+              width: cardData.length === 0 ? 150 : 120,
             }}
             source={require('/Users/muneeb/Desktop/Data/scavenger_Hunt/Assets/qrCode.png')}
           />
-          {/* <Text
-            style={{
-              alignSelf: 'center',
-              paddingVertical: '2%',
-              fontSize: 17,
-            }}>
-            Click to scan PDF
-          </Text> */}
         </TouchableOpacity>
       </View>
       <ScrollView
         contentContainerStyle={{alignItems: 'center', alignSelf: 'center'}}
         style={[styles.scrollContainer]}>
         {cardData.length === 0 ? (
-          <Text style={{paddingTop: '10%', fontSize: 20, fontWeight: 'bold'}}>
-            There is no card
+          <Text
+            style={{
+              marginTop: cardData.length === 0 ? '20%' : '5%',
+              fontSize: 20,
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}>
+            <Text style={{}}>There is no card right now</Text> {'.\n'}
+            <Text> Please Scan the QR to unlock the Cards</Text>
           </Text>
         ) : (
           <View>
             <FlatList
-              data={data}
+              data={cardData}
               renderItem={({item}) => {
                 return (
                   <CardComponent
-                    title={item.title}
-                    points={item.points}
-                    imageSource={item.imageSource}
-                    options={item.options}
-                    onSubmit={() => {
-                      // Handle submit action
-                    }}
+                    selected_option={item?.selected_option}
+                    item={item}
+                    id={item?.id}
+                    correct={item?.correct}
+                    title={item.card_title}
+                    points={item?.points}
+                    imageSource={item?.image}
+                    options={item?.options}
+                    onSubmit={() => {}}
                   />
                 );
               }}
@@ -144,6 +154,8 @@ const Items = ({navigation}) => {
         )}
       </ScrollView>
     </View>
+  ) : (
+    <></>
   );
 };
 
