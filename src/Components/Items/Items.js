@@ -53,6 +53,7 @@ const Items = props => {
   const [loader, setLoader] = useState(false);
   const [fullWatched, setFullWatched] = useState(false);
   const [FullyWatchedScannedData, setFullyWatchedScannedData] = useState(false);
+  const [watchQUiz, setWatchQUiz] = useState(cardData.length > 3);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -113,6 +114,7 @@ const Items = props => {
               props?.navigation?.navigate('PDF Data', {
                 id: props?.route?.params?.id,
                 cardData,
+                watchQUiz: cardData.length > 3,
               });
             }
           }}

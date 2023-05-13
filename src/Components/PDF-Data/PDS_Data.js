@@ -46,6 +46,7 @@ const PDF_Data = props => {
           setFullCardData(response?.data?.data);
           setShowCam(false);
           setLoader(false);
+          console.log(response);
           debugger;
         }
       } catch (err) {
@@ -107,6 +108,7 @@ const PDF_Data = props => {
             justifyContent: 'center',
           }}>
           <SingleCardComponent
+            watchQUiz={props?.route?.params?.watchQUiz}
             back={() => props?.navigation.goBack()}
             userID={props?.route?.params?.id}
             id={fullCardData?.id}

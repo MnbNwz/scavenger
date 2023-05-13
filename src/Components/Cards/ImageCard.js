@@ -5,7 +5,6 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
-  TextInput,
   Dimensions,
 } from 'react-native';
 import AudioBar from './Audio';

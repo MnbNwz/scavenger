@@ -7,8 +7,10 @@ import ImageCard from './ImageCard';
 const SingleCardComponent = props => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [loader, setLoader] = useState(false);
+
   const [showQuiz, setShowQuiz] = useState(false);
   const [imageCard, setImageCard] = useState({});
+  console.log(props?.watchQUiz);
 
   const handleOptionSelect = option => {
     setSelectedOption(prevOption => (prevOption === option ? null : option));
@@ -58,6 +60,7 @@ const SingleCardComponent = props => {
         <Text style={styles.title}>Question: </Text>
         <TouchableOpacity
           onPress={async () => {
+            setLoader(true);
             try {
               debugger;
               const response = await axios.post(
@@ -74,8 +77,9 @@ const SingleCardComponent = props => {
               console.log(err);
               debugger;
             }
+            setLoader(false);
           }}>
-          <Text style={styles.title}>Quiz </Text>
+          {props?.watchQUiz && <Text style={styles.title}>Quiz </Text>}
         </TouchableOpacity>
         <Text style={styles.points}>
           <Text style={{fontWeight: 'bold'}}>Points:</Text>{' '}
