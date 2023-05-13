@@ -46,19 +46,23 @@ const PDF_Data = props => {
           setFullCardData(response?.data?.data);
           setShowCam(false);
           setLoader(false);
+          debugger;
         }
       } catch (err) {
+        console.log(err);
         setShowCam(false);
         setLoader(false);
+        debugger;
       }
     } else {
+      debugger;
       setShowCam(false);
       setLoader(false);
       // showMessage({
       //   message: 'Card already found in your list',
       //   type: 'info',
       // });
-
+      debugger;
       props?.navigation.goBack();
       setLoader(false);
     }

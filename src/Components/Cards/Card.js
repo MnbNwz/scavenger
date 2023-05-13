@@ -25,10 +25,7 @@ const CardComponent = props => {
         {props?.options?.map((option, index) => (
           <TouchableOpacity
             key={index}
-            style={[
-              styles.optionButton,
-              selectedOption === option && styles.selectedOptionButton,
-            ]}
+            style={[styles.optionButton]}
             onPress={() => handleOptionSelect(option)}
             disabled={selectedOption && selectedOption !== option}>
             <Text style={styles.optionText}>{option}</Text>
@@ -99,6 +96,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     marginRight: 10,
+    width: '31.2%',
   },
   selectedOptionButton: {
     backgroundColor: '#007AFF',
