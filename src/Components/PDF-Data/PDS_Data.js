@@ -7,9 +7,10 @@ const PDF_Data = ({navigation}) => {
   const [scannedData, setScannedData] = useState('');
   const [showCam, setShowCam] = useState(true);
 
+  const url =
+    'https://nonchalant-foregoing-guarantee.glitch.me/add-player-card';
+
   const handleBarcodeScan = async ({data}) => {
-    const url =
-      'https://nonchalant-foregoing-guarantee.glitch.me/add-player-card';
     setScannedData(data);
     setShowCam(false);
     const scannedId = '12,d0ae5b2d-fafc-446f-a0cb-b3f9b094c94d';
@@ -58,7 +59,7 @@ const PDF_Data = ({navigation}) => {
         </View>
       ) : (
         <View>
-          DATA from QR <Text>{scannedData}</Text>
+          <Text>DATA from QR{scannedData}</Text>
         </View>
       )}
     </View>

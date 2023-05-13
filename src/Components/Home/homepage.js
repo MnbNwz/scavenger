@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -10,22 +10,28 @@ import {
   Dimensions,
   ActivityIndicator,
 } from 'react-native';
-// import AnimatedLoader from 'react-native-animated-loader';
+import ProgressLoader from 'rn-progress-loader';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
 import {showMessage} from 'react-native-flash-message';
 import axios from 'axios';
+import {useFocusEffect} from '@react-navigation/native';
 
 const LoginScreen = props => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [loader, setLoader] = useState(false);
 
-  useEffect(() => {
-    removeAllItems();
-    setName('');
-    setEmail('');
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      removeAllItems();
+      setName('');
+      setEmail('');
+
+      return () => {};
+    }, []),
+  );
 
   const removeAllItems = async () => {
     try {
@@ -39,6 +45,7 @@ const LoginScreen = props => {
   const handleLogin = async () => {
     if (name === '' || email === '') {
     } else {
+      setLoader(true);
       const payload = {
         name,
         email,
@@ -52,22 +59,28 @@ const LoginScreen = props => {
           debugger;
           await AsyncStorage.setItem('name', name);
           await AsyncStorage.setItem('email', email);
-          // props?.navigation?.navigate('Items', {
-          //   name,
-          //   email,
-          //   id: response?.data?.data?.id,
-          // });
+          props?.navigation?.navigate('Items', {
+            name,
+            email,
+            id: response?.data?.data?.id,
+          });
         }
-        setLoader(false);
       } catch (error) {
         console.error('Error:', error);
-        setLoader(false);
       }
     }
+    setLoader(false);
   };
 
   return (
     <SafeAreaView style={styles.container}>
+      <ProgressLoader
+        visible={loader}
+        isModal={true}
+        isHUD={true}
+        hudColor={'#000000'}
+        color={'#FFFFFF'}
+      />
       <View style={styles.contentContainer}>
         <Text style={styles.title}>scavenger_Hunt</Text>
         <TextInput
@@ -88,17 +101,9 @@ const LoginScreen = props => {
         <Button
           title="Enter Details"
           onPress={() => {
-            setLoader(true);
             handleLogin();
           }}
         />
-        {/* <AnimatedLoader
-          visible={loader}
-          overlayColor="rgba(255,255,255,0.75)"
-          animationStyle={{width: 100, height: 100}}
-          speed={1}>
-          <Text>Doing something...</Text>
-        </AnimatedLoader> */}
       </View>
     </SafeAreaView>
   );
