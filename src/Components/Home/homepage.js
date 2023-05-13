@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   View,
   Text,
@@ -15,7 +15,7 @@ import {
 import ProgressLoader from 'rn-progress-loader';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import uuid from 'react-native-uuid';
+
 import {showMessage} from 'react-native-flash-message';
 import axios from 'axios';
 import {useFocusEffect} from '@react-navigation/native';

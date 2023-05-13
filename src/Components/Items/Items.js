@@ -50,8 +50,6 @@ const styles = StyleSheet.create({
 const Items = props => {
   const [cardData, setCardData] = useState([]);
   const [loader, setLoader] = useState(false);
-  const [cardsFullData, setCardsFullData] = useState([]);
-  const [showItems, setShowItems] = useState(true);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -69,18 +67,12 @@ const Items = props => {
       if (response?.data?.success === true) {
         console.log(response);
         setCardData(response?.data?.data?.cards);
-        setCardsFullData(response?.data?.data);
       }
-    } catch (err) {
-      console.log(err);
-      debugger;
-    }
+    } catch (err) {}
     setLoader(false);
   };
 
-  // console.log(cardsFullData);
-
-  return showItems ? (
+  return (
     <View
       style={[
         styles.container,
@@ -154,8 +146,6 @@ const Items = props => {
         )}
       </ScrollView>
     </View>
-  ) : (
-    <></>
   );
 };
 

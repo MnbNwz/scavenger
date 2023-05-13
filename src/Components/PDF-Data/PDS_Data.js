@@ -40,7 +40,6 @@ const PDF_Data = props => {
       }
     });
     if (flag) {
-      debugger;
       try {
         const response = await axios.post(url, payload);
         if (response.data.success === true) {
@@ -49,7 +48,6 @@ const PDF_Data = props => {
           setLoader(false);
         }
       } catch (err) {
-        // console.log(err);
         setShowCam(false);
         setLoader(false);
       }
@@ -60,7 +58,7 @@ const PDF_Data = props => {
       //   message: 'Card already found in your list',
       //   type: 'info',
       // });
-      debugger;
+
       props?.navigation.goBack();
       setLoader(false);
     }

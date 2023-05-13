@@ -19,19 +19,15 @@ const SingleCardComponent = props => {
       card_id: props?.id,
       selected: selectedOption,
     };
-    debugger;
+
     if (selectedOption) {
       try {
         const response = await axios.post(url, payload);
-        // console.log(response);
-
         if (response?.data.success === true) {
           props?.back();
         }
-        debugger;
       } catch (err) {
         console.log(err);
-        debugger;
       }
     }
     setLoader(false);
