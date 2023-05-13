@@ -14,6 +14,7 @@ import axios from 'axios';
 import CardComponent from '../Cards/Card';
 import {useFocusEffect} from '@react-navigation/native';
 import ProgressLoader from 'rn-progress-loader';
+import Modal from './Modal';
 
 const styles = StyleSheet.create({
   container: {
@@ -50,6 +51,8 @@ const styles = StyleSheet.create({
 const Items = props => {
   const [cardData, setCardData] = useState([]);
   const [loader, setLoader] = useState(false);
+  const [fullWatched, setFullWatched] = useState(false);
+  const [FullyWatchedScannedData, setFullyWatchedScannedData] = useState(false);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -65,13 +68,17 @@ const Items = props => {
       const response = await axios.post(url, {id: props?.route?.params?.id});
       console.log(response);
       if (response?.data?.success === true) {
+        setFullWatched(
+          response?.data?.data?.total_cards ===
+            response?.data?.data?.cards?.length,
+        );
         console.log(response);
         setCardData(response?.data?.data?.cards);
       }
     } catch (err) {}
     setLoader(false);
   };
-
+  console.log(fullWatched);
   return (
     <View
       style={[
@@ -85,6 +92,14 @@ const Items = props => {
         hudColor={'#000000'}
         color={'#FFFFFF'}
       />
+      {FullyWatchedScannedData && fullWatched && (
+        <Modal
+          onSubmit={() => {
+            setFullyWatchedScannedData(false);
+            setFullWatched(false);
+          }}
+        />
+      )}
       <View
         style={[
           styles.cameraContainer,
@@ -92,10 +107,14 @@ const Items = props => {
         ]}>
         <TouchableOpacity
           onPress={async () => {
-            props?.navigation?.navigate('PDF Data', {
-              id: props?.route?.params?.id,
-              cardData,
-            });
+            if (fullWatched) {
+              setFullyWatchedScannedData(true);
+            } else {
+              props?.navigation?.navigate('PDF Data', {
+                id: props?.route?.params?.id,
+                cardData,
+              });
+            }
           }}
           style={{}}>
           <Image
@@ -126,6 +145,7 @@ const Items = props => {
             <FlatList
               data={cardData}
               renderItem={({item}) => {
+                console.log(item);
                 return (
                   <CardComponent
                     selected_option={item?.selected_option}
