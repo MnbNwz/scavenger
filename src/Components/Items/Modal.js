@@ -15,8 +15,9 @@ const SprtComponent = props => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text style={styles.modalText}>
-              Sorry you have watched all the Cards. please wait for the next
-              cards.
+              {props?.data
+                ? props?.data
+                : 'Sorry you have watched all the Cards. please wait for the next cards.'}
             </Text>
 
             <TouchableOpacity style={styles.modalButton} onPress={closeModal}>

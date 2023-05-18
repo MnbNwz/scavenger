@@ -8,10 +8,6 @@ const SingleCardComponent = props => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [loader, setLoader] = useState(false);
 
-  const [showQuiz, setShowQuiz] = useState(false);
-  const [imageCard, setImageCard] = useState({});
-  console.log(props?.watchQUiz);
-
   const handleOptionSelect = option => {
     setSelectedOption(prevOption => (prevOption === option ? null : option));
   };
@@ -41,13 +37,7 @@ const SingleCardComponent = props => {
   const {id, image, points, correct, options, card_title} = props;
   console.log(selectedOption);
 
-  return showQuiz ? (
-    <ImageCard
-      back={() => props?.back()}
-      images={imageCard?.images}
-      imageCard={imageCard}
-    />
-  ) : (
+  return (
     <View key={id} style={styles.card}>
       <ProgressLoader
         visible={loader}
@@ -58,29 +48,7 @@ const SingleCardComponent = props => {
       />
       <View style={styles.header}>
         <Text style={styles.title}>Question: </Text>
-        <TouchableOpacity
-          onPress={async () => {
-            setLoader(true);
-            try {
-              debugger;
-              const response = await axios.post(
-                'https://nonchalant-foregoing-guarantee.glitch.me/get-quiz',
-                {
-                  id: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
-                },
-              );
-              console.log(response);
-              setImageCard(response?.data?.data);
-              debugger;
-              setShowQuiz(true);
-            } catch (err) {
-              console.log(err);
-              debugger;
-            }
-            setLoader(false);
-          }}>
-          {props?.watchQUiz && <Text style={styles.title}>Quiz </Text>}
-        </TouchableOpacity>
+
         <Text style={styles.points}>
           <Text style={{fontWeight: 'bold'}}>Points:</Text>{' '}
           <Text style={{fontWeight: points === 0 ? 'normal' : 'bold'}}>

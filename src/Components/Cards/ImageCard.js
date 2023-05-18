@@ -64,7 +64,7 @@ const ImageCard = props => {
 
     return rows;
   };
-  console.log(props);
+
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{props?.imageCard?.title}</Text>
@@ -76,8 +76,11 @@ const ImageCard = props => {
           styles.submitButton,
           selectedOption ? null : styles.disabledSubmitButton,
         ]}
+        disabled={!selectedOption}
         onPress={() => {
           props?.back();
+          props?.setTotalQuizes();
+          props?.setPoints();
         }}>
         <Text style={styles.submitText}>Submit</Text>
       </TouchableOpacity>
@@ -95,7 +98,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 16,
     paddingBottom: 20,
-    width: Dimensions.get('window').width,
   },
   title: {
     fontSize: 22,
@@ -134,6 +136,9 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     alignItems: 'center',
   },
+  disabledSubmitButton: {
+    backgroundColor: '#999999',
+  },
   image: {
     width: '100%',
     height: undefined,
@@ -147,14 +152,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     borderRadius: 10,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-
-  audioField: {
-    height: 40,
-    borderWidth: 1,
-    borderColor: '#333333',
-    borderRadius: 8,
-    paddingHorizontal: 10,
   },
 });
 
