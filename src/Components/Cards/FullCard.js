@@ -34,8 +34,7 @@ const SingleCardComponent = props => {
     setLoader(false);
   };
 
-  const {id, image, points, correct, options, card_title} = props;
-  console.log(selectedOption);
+  const {id, image, points, options, card_title} = props;
 
   return (
     <View key={id} style={styles.card}>

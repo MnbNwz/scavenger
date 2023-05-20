@@ -20,9 +20,30 @@ const SprtComponent = props => {
                 : 'Sorry you have watched all the Cards. please wait for the next cards.'}
             </Text>
 
-            <TouchableOpacity style={styles.modalButton} onPress={closeModal}>
-              <Text style={styles.modalButtonText}>OKAY</Text>
-            </TouchableOpacity>
+            {props?.twoButtons ? (
+              <View>
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={() => {
+                    closeModal;
+                    props?.onSubmit(1);
+                  }}>
+                  <Text style={styles.modalButtonText}>Try Again</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={() => {
+                    closeModal;
+                    props?.onSubmit(2);
+                  }}>
+                  <Text style={styles.modalButtonText}>Go Back</Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <TouchableOpacity style={styles.modalButton} onPress={closeModal}>
+                <Text style={styles.modalButtonText}>OKAY</Text>
+              </TouchableOpacity>
+            )}
           </View>
         </View>
       </Modal>

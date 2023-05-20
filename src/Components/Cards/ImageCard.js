@@ -1,16 +1,12 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-} from 'react-native';
+import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import AudioBar from './Audio';
+import Modal from '../Items/Modal';
+import ProgressLoader from 'rn-progress-loader';
 
 const ImageCard = props => {
   const [selectedOption, setSelectedOption] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const handleOptionSelect = option => {
     setSelectedOption(prevOption => (prevOption === option ? null : option));
@@ -58,7 +54,6 @@ const ImageCard = props => {
           )}
         </View>
       );
-
       rows.push(row);
     }
 
@@ -68,9 +63,16 @@ const ImageCard = props => {
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{props?.imageCard?.title}</Text>
-
       <View style={styles.imageContainer}>{renderImageRows()}</View>
       <AudioBar />
+      <ProgressLoader
+        visible={props?.loader}
+        isModal={true}
+        isHUD={true}
+        hudColor={'#000000'}
+        color={'#FFFFFF'}
+      />
+
       <TouchableOpacity
         style={[
           styles.submitButton,
@@ -78,12 +80,31 @@ const ImageCard = props => {
         ]}
         disabled={!selectedOption}
         onPress={() => {
-          props?.back();
-          props?.setTotalQuizes();
-          props?.setPoints();
+          if (selectedOption === props?.imageCard?.correct) {
+            props?.back();
+            props?.setTotalQuizes();
+            props?.setPoints();
+          } else {
+            setShowModal(true);
+          }
         }}>
         <Text style={styles.submitText}>Submit</Text>
       </TouchableOpacity>
+      {showModal && (
+        <Modal
+          data={`Sorry your answer is wrong`}
+          twoButtons={true}
+          onSubmit={value => {
+            props?.setTotalQuizes();
+            value === 1
+              ? props?.setWatchQuizAgain()
+              : value === 2 && props?.back();
+
+            setSelectedOption(0);
+            setShowModal(false);
+          }}
+        />
+      )}
     </View>
   );
 };

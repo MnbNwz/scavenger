@@ -10,13 +10,15 @@ import {RNCamera} from 'react-native-camera';
 import ProgressLoader from 'rn-progress-loader';
 import axios from 'axios';
 import SingleCardComponent from '../Cards/FullCard';
-import {showMessage, hideMessage} from 'react-native-flash-message';
+import Modal from '../Items/Modal';
 
 const PDF_Data = props => {
   const [scannedData, setScannedData] = useState('');
   const [showCam, setShowCam] = useState(true);
   const [fullCardData, setFullCardData] = useState({});
   const [loader, setLoader] = useState(false);
+  const [alreadyWatchedScannedCard, setAlreadyWatchedScannedCard] =
+    useState(false);
 
   const url =
     'https://nonchalant-foregoing-guarantee.glitch.me/add-player-card';
@@ -44,18 +46,14 @@ const PDF_Data = props => {
         const response = await axios.post(url, payload);
         if (response.data.success === true) {
           setFullCardData(response?.data?.data);
-          setShowCam(false);
-          setLoader(false);
-          console.log(response);
-          debugger;
         }
       } catch (err) {
         console.log(err);
-        setShowCam(false);
-        setLoader(false);
-        debugger;
       }
+      setShowCam(false);
+      setLoader(false);
     } else {
+      setAlreadyWatchedScannedCard(true);
       debugger;
       setShowCam(false);
       setLoader(false);
@@ -63,8 +61,7 @@ const PDF_Data = props => {
       //   message: 'Card already found in your list',
       //   type: 'info',
       // });
-      debugger;
-      props?.navigation.goBack();
+
       setLoader(false);
     }
     setLoader(false);
@@ -79,6 +76,15 @@ const PDF_Data = props => {
         hudColor={'#000000'}
         color={'#FFFFFF'}
       />
+      {alreadyWatchedScannedCard && (
+        <Modal
+          data={`You have already scanned this card.${'\n'}Please Scan another card.`}
+          onSubmit={() => {
+            setAlreadyWatchedScannedCard(false);
+            props?.navigation.goBack();
+          }}
+        />
+      )}
       {showCam ? (
         <View>
           <RNCamera
@@ -100,26 +106,28 @@ const PDF_Data = props => {
           </TouchableOpacity>
         </View>
       ) : (
-        <View
-          style={{
-            height:
-              Dimensions.get('window').height - 2 * StatusBar.currentHeight,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <SingleCardComponent
-            watchQUiz={props?.route?.params?.watchQUiz}
-            back={() => props?.navigation.goBack()}
-            userID={props?.route?.params?.id}
-            id={fullCardData?.id}
-            card_title={fullCardData?.card_title}
-            correct={fullCardData?.correct}
-            image={fullCardData?.image}
-            points={fullCardData?.points}
-            options={fullCardData?.options}
-            card={fullCardData}
-          />
-        </View>
+        !alreadyWatchedScannedCard && (
+          <View
+            style={{
+              height:
+                Dimensions.get('window').height - 2 * StatusBar.currentHeight,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <SingleCardComponent
+              watchQUiz={props?.route?.params?.watchQUiz}
+              back={() => props?.navigation.goBack()}
+              userID={props?.route?.params?.id}
+              id={fullCardData?.id}
+              card_title={fullCardData?.card_title}
+              correct={fullCardData?.correct}
+              image={fullCardData?.image}
+              points={fullCardData?.points}
+              options={fullCardData?.options}
+              card={fullCardData}
+            />
+          </View>
+        )
       )}
     </View>
   );

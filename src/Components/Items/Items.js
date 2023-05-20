@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   cameraContainer: {
-    height: '20%',
+    // height: '20%',
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomColor: '#000',
@@ -67,29 +67,50 @@ const Items = props => {
   const [cardData, setCardData] = useState([]);
   const [loader, setLoader] = useState(false);
   const [fullWatched, setFullWatched] = useState(false);
-  const [FullyWatchedScannedData, setFullyWatchedScannedData] = useState(false);
-  const [watchQUiz, setWatchQUiz] = useState(cardData.length > 3);
+  // const [FullyWatchedScannedData, setFullyWatchedScannedData] = useState(false);
+
   const [imageCard, setImageCard] = useState({});
   const [showQuiz, setShowQuiz] = useState(false);
   const [points, setPoints] = useState(0);
   const [totalQuizes, setTotalQuizes] = useState(0);
   const [modalForAllQUizes, setSetModalForAllQUizes] = useState(false);
-
+  const [watchQuizAgain, setWatchQuizAgain] = useState(false);
+  const [navigateOrNot, setNavigateOrNot] = useState(false);
+  const [watchNewQuiz, setWatchNewQuiz] = useState(true);
+  const [showQuizMessage, setShowQuizMessage] = useState(false);
   useFocusEffect(
     React.useCallback(() => {
       setLoader(true);
       gettingData();
+      if (points === 100) {
+        setSetModalForAllQUizes(true);
+        setShowQuizMessage(true);
+      } else {
+        setSetModalForAllQUizes(false);
+        setShowQuizMessage(false);
+      }
     }, []),
   );
+  useEffect(() => {
+    if (watchQuizAgain) {
+      debugger;
+      gettingImageCard();
+    }
+  }, [watchNewQuiz]);
 
   const url = 'https://nonchalant-foregoing-guarantee.glitch.me/get-player';
 
   const gettingData = async () => {
+    setLoader(true);
     try {
       const response = await axios.post(url, {id: props?.route?.params?.id});
       console.log(response);
       if (response?.data?.success === true) {
         setFullWatched(
+          response?.data?.data?.total_cards ===
+            response?.data?.data?.cards?.length,
+        );
+        setNavigateOrNot(
           response?.data?.data?.total_cards ===
             response?.data?.data?.cards?.length,
         );
@@ -99,7 +120,28 @@ const Items = props => {
     } catch (err) {}
     setLoader(false);
   };
-  console.log(fullWatched);
+
+  const gettingImageCard = async () => {
+    debugger;
+    if (points < 100) {
+      setLoader(true);
+      try {
+        const response = await axios.post(
+          'https://nonchalant-foregoing-guarantee.glitch.me/get-quiz',
+          {
+            id: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
+          },
+        );
+        console.log(response);
+        setImageCard(response?.data?.data);
+        setShowQuiz(true);
+      } catch (err) {
+        console.log(err);
+      }
+      setLoader(false);
+    } else {
+    }
+  };
   return showQuiz ? (
     <ImageCard
       setTotalQuizes={() => setTotalQuizes(totalQuizes + 1)}
@@ -107,6 +149,11 @@ const Items = props => {
       back={() => setShowQuiz(false)}
       images={imageCard?.images}
       imageCard={imageCard}
+      setWatchQuizAgain={() => {
+        setWatchQuizAgain(true);
+        setWatchNewQuiz(!watchNewQuiz);
+      }}
+      loader={loader}
     />
   ) : (
     <View
@@ -114,6 +161,36 @@ const Items = props => {
         styles.container,
         {paddingTop: cardData.length === 0 ? '40%' : 0},
       ]}>
+      {navigateOrNot && (
+        <View
+          style={{
+            position: 'absolute',
+            width: '100%',
+            top: '1%',
+            zIndex: 10,
+            elevation: 10,
+            backgroundColor: '#98FB98',
+          }}>
+          <Text style={{fontSize: 18, textAlign: 'center'}}>
+            {`You have watched all the scan cards ${'\n'} You cant scan card anymore. Please come later`}
+          </Text>
+        </View>
+      )}
+      {showQuizMessage && (
+        <View
+          style={{
+            position: 'absolute',
+            width: '100%',
+            top: '24.5%',
+            zIndex: 15,
+            elevation: 15,
+            backgroundColor: '#98FB98',
+          }}>
+          <Text style={{fontSize: 18, textAlign: 'center'}}>
+            {`You have answered ${totalQuizes} questions and you earned ${points}. Since you have earned ${points}. ${'\n'}So, You can't solve quiz anymore.`}
+          </Text>
+        </View>
+      )}
       <ProgressLoader
         visible={loader}
         isModal={true}
@@ -121,14 +198,7 @@ const Items = props => {
         hudColor={'#000000'}
         color={'#FFFFFF'}
       />
-      {FullyWatchedScannedData && fullWatched && (
-        <Modal
-          onSubmit={() => {
-            setFullyWatchedScannedData(false);
-            setFullWatched(false);
-          }}
-        />
-      )}
+
       {modalForAllQUizes && (
         <Modal
           data={'You have answered the all quizzes. Please come back later.!'}
@@ -140,14 +210,16 @@ const Items = props => {
       <View
         style={[
           styles.cameraContainer,
-          {borderBottomWidth: cardData.length === 0 ? 0 : 1},
+          {
+            borderBottomWidth: cardData.length === 0 ? 0 : 1,
+            marginTop: navigateOrNot ? '16%' : '5%',
+            paddingBottom: showQuizMessage ? '22%' : '5%',
+          },
         ]}>
         <TouchableOpacity
           onPress={async () => {
-            debugger;
-            if (fullWatched) {
-              debugger;
-              setFullyWatchedScannedData(true);
+            if (navigateOrNot) {
+              return;
             } else {
               props?.navigation?.navigate('PDF Data', {
                 id: props?.route?.params?.id,
@@ -166,33 +238,13 @@ const Items = props => {
         </TouchableOpacity>
       </View>
       {cardData.length > 3 && (
-        <View style={{flexDirection: 'row'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            marginVertical: '2%',
+          }}>
           <View style={{width: '40%', marginLeft: points === 0 ? 0 : '-1%'}}>
-            <TouchableOpacity
-              onPress={async () => {
-                if (totalQuizes < 10) {
-                  setLoader(true);
-                  try {
-                    debugger;
-                    const response = await axios.post(
-                      'https://nonchalant-foregoing-guarantee.glitch.me/get-quiz',
-                      {
-                        id: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
-                      },
-                    );
-                    console.log(response);
-                    setImageCard(response?.data?.data);
-                    debugger;
-                    setShowQuiz(true);
-                  } catch (err) {
-                    console.log(err);
-                    debugger;
-                  }
-                  setLoader(false);
-                } else {
-                  setSetModalForAllQUizes(true);
-                }
-              }}>
+            <TouchableOpacity onPress={() => gettingImageCard()}>
               {<Text style={styles.title}>Quiz </Text>}
             </TouchableOpacity>
           </View>
