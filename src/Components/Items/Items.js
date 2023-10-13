@@ -122,7 +122,6 @@ const Items = props => {
   };
 
   const gettingImageCard = async () => {
-    debugger;
     if (points < 100) {
       setLoader(true);
       try {
